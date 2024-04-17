@@ -31,9 +31,135 @@
     <!-- Font Awsome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+	<style>
+		table{
+			border: 2px solid #cdcdcd;
+		}
+		td, th{
+			padding-left: 10px;
+			padding-right: 10px;
+			text-align: center;
+			border: 1px solid #c7c7c7;
+		}
+		input{
+			text-align: left;
+			border: none;
+			width: 100%;
+		}
+		.param-label{
+			text-align: end;
+		}
+	</style>
   </head>
 
   <body>
-    Beam Calculator
+	<table>
+		<tr>
+			<th> Parameter</th><th>Symbol</th><th>Value</th><th>Unit</th>
+		</tr>
+		<tr><th colspan="4">Beam 1 definition</th></tr>
+		<tr>
+			<td class="param-label">Length</td><td>L<sub>1</sub></td><td><input value="30" type="number" min="10" max="80" step="0.5" id="eL1"></td><td>mm</td>
+		</tr>
+		<tr>
+			<td class="param-label">Sheet Thickness</td><td>d<sub>1</sub></td><td><input value="0.5" type="number" min="0.05" max="10" step="0.1" id="ed1"></td><td>mm</td>
+		</tr>
+		<tr>
+			<td class="param-label">Beam Width</td><td>b<sub>1</sub></td><td><input value="10" type="number" min="3" max="20" step="0.5" id="eb1"></td><td>mm</td>
+		</tr>
+		<tr>
+			<td class="param-label">Forced displacement point</td><td>L<sub>A1</sub></td><td><input value="10" type="number" min="10" max="80" step="0.5" id="eLA1"></td><td>mm</td>
+		</tr>
+		<tr><th colspan="4">Beam 2 definition</th></tr>
+		
+		<tr>
+			<td class="param-label">Length</td><td>L<sub>2</sub></td><td><input value="30" type="number" min="10" max="80" step="0.5" id="eL2"></td><td>mm</td>
+		</tr>
+		<tr>
+			<td class="param-label">Sheet Thickness</td><td>d<sub>2</sub></td><td><input value="0.5" type="number" min="0.05" max="10" step="0.1" id="ed2"></td><td>mm</td>
+		</tr>
+		<tr>
+			<td class="param-label">Beam Width</td><td>b<sub>2</sub></td><td><input value="10" type="number" min="3" max="20" step="0.5" id="eb2"></td><td>mm</td>
+		</tr>
+		<tr>
+			<td class="param-label">Forced displacement point</td><td>L<sub>A2</sub></td><td><input value="10" type="number" min="10" max="80" step="0.5" id="eLA2"></td><td>mm</td>
+		</tr>
+		<tr><th colspan="4">Common Characteristics</th></tr>
+		<tr>
+			<td class="param-label">Modulus of elasticity</td><td>E</td><td><input value="200" type="number" min="10" max="10000" step="10" id="eE"></td><td>GPa</td>
+		</tr>
+		<tr>
+			<td class="param-label">Motor stepping</td><td>R<sub>m</sub></td><td><input value="800" type="number" min="50" max="64000" step="200" id="eStepping"></td><td>steps/rev</td>
+		</tr>
+		<tr><th colspan="4">Results</th></tr>
+		<tr>
+			<td class="param-label">Fine transfer function</td><td>ToF<sub>f</sub></td><td><span id="eToF_F"></span></td><td>--</td>
+		</tr>
+		<tr>
+			<td class="param-label">Fine resolution </td><td>R<sub>f</sub></td><td><span id="eR_F"></span></td><td>nm</td>
+		</tr>
+		<tr>
+			<td class="param-label">Coarse transfer function</td><td>ToF<sub>c</sub></td><td><span id="eToF_C"></span></td><td>--</td>
+		</tr>
+		<tr>
+			<td class="param-label">Coarse resolution </td><td>R<sub>c</sub></td><td><span id="eR_C"></span></td><td>nm</td>
+		</tr>
+	</table>
+	<script>
+		function analysis1(){
+			var ToF_F = document.getElementById("eToF_F");
+			var R_F = document.getElementById("eR_F");
+			var ToF_C = document.getElementById("eToF_C");
+			var R_C = document.getElementById("eR_C");
+
+			var b1 = document.getElementById("eb1").value;
+			var d1 = document.getElementById("ed1").value;
+			var b2 = document.getElementById("eb2").value;
+			var d2 = document.getElementById("ed2").value;
+			
+			var I1 = b1 * Math.pow(d1, 3) / 12;
+			var I2 = b2 * Math.pow(d2, 3) / 12;
+
+			var E = document.getElementById("eE").value;
+			var L1 = document.getElementById("eL1").value;
+			var L_f = document.getElementById("eL2").value;
+			var L_a = document.getElementById("eLA1").value;
+			var L2 = document.getElementById("eL2").value;
+
+			var E1 = E;
+			var E2 = E;
+
+			function nanoMovement(displacement)
+			{
+				var t_a = displacement
+				console.log("eq: ", -(L_f*((3*E2*I2*(3*E1*I1*L1*t_a - E1*I1*L_a*t_a)*L_f^2)/(L_a*(- 4*E2*I2*L1^3 + 9*E2*I2*L1^2*L_a - 6*E2*I2*L1*L_a^2 + 4*E1*I1*L2^3 + E2*I2*L_a^3)) - (3*E2*I2*L2*(3*E1*I1*L1*t_a - E1*I1*L_a*t_a)*L_f)/(L_a*(- 4*E2*I2*L1^3 + 9*E2*I2*L1^2*L_a - 6*E2*I2*L1*L_a^2 + 4*E1*I1*L2^3 + E2*I2*L_a^3))) - (2*E2*I2*L_f^3*(3*E1*I1*L1*t_a - E1*I1*L_a*t_a))/(L_a*(- 4*E2*I2*L1^3 + 9*E2*I2*L1^2*L_a - 6*E2*I2*L1*L_a^2 + 4*E1*I1*L2^3 + E2*I2*L_a^3)))/(E2*I2))
+				var t_n = -(L_f*((3*E2*I2*(3*E1*I1*L1*t_a - E1*I1*L_a*t_a)*L_f^2)/(L_a*(- 4*E2*I2*L1^3 + 9*E2*I2*L1^2*L_a - 6*E2*I2*L1*L_a^2 + 4*E1*I1*L2^3 + E2*I2*L_a^3)) - (3*E2*I2*L2*(3*E1*I1*L1*t_a - E1*I1*L_a*t_a)*L_f)/(L_a*(- 4*E2*I2*L1^3 + 9*E2*I2*L1^2*L_a - 6*E2*I2*L1*L_a^2 + 4*E1*I1*L2^3 + E2*I2*L_a^3))) - (2*E2*I2*L_f^3*(3*E1*I1*L1*t_a - E1*I1*L_a*t_a))/(L_a*(- 4*E2*I2*L1^3 + 9*E2*I2*L1^2*L_a - 6*E2*I2*L1*L_a^2 + 4*E1*I1*L2^3 + E2*I2*L_a^3)))/(E2*I2);
+				return t_n;
+			}
+
+			ToF_F.innerHTML = nanoMovement(1);
+		}
+		function getSIVal(element){
+			var mult = 1;
+			if (element.startsWith("eL"))
+				mult = 0.001;
+			else if (element.startsWith("eE"))
+				mult = 1000000;
+			return document.getElementById(element).value * mult;
+		}
+		// Get all input elements of a specific type
+		const inputs = document.querySelectorAll('input[type="number"]');
+		
+		// Add an event listener to each input element
+		inputs.forEach(input => {
+			input.addEventListener('input', event => {
+				// Your event handling code here
+				console.log(input.id + ' value changed:', event.target.value);
+				analysis1();
+			});
+		});
+		console.log("Length", getSIVal("eL1"));
+		analysis1();
+	</script>
   </body>
 </html>
