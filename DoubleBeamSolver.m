@@ -52,7 +52,7 @@ eqB = t_e == P_e / K2;
 % t_e == P_E * L2^3 / 3 / E1 / I1
 sol2 = solve([eqA, eqB], [t_e, P_e]);
 t_e = sol2.t_e
-P_e = sol2.P_e
+P_e = sol2.P_e;
 %t_a = subs(sol.t_a, [P_e, t_e], [sol2.P_e, sol2.t_e])
 
 
@@ -69,6 +69,6 @@ t_n = ( ...
     (A7 * 2/3 * L_f)) / (E2 * I2)
     
 %% t_n (nano diflaction) is a function of t_a (Applied diflaction). Can be verified by putting whole numbers in the constant values.
-% subs(t_n, [L1, L2, E2, I2, L_a, E1, I1, K2, L2, L_f], [1, 2, 3, 4, 5, 6, 7, 8, 9, 0.5])
+subs(t_n, [L1, L2, E2, I2, L_a, E1, I1, K2, L2, L_f], [1, 2, 3, 4, 5, 6, 7, 8, 9, 0.5])
 
 % Lets Make the calculator now.
