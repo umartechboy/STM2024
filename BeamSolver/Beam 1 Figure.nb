@@ -1,0 +1,679 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27546,        671]
+NotebookOptionsPosition[     26828,        650]
+NotebookOutlinePosition[     27237,        666]
+CellTagsIndexPosition[     27194,        663]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData["\[AliasDelimiter]"], "Input",
+ CellChangeTimes->{{3.9236991083460865`*^9, 3.9236991478702664`*^9}, {
+   3.9236991791644564`*^9, 3.92369937889326*^9}, 
+   3.9236995040773025`*^9},ExpressionUUID->"4c723a09-a0cb-4865-bd4f-\
+dff5ee412dc2"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`L$$ = 0.05, $CellContext`La$$ = 
+    0.02, $CellContext`Pe$$ = 0.05, $CellContext`Rb$$ = 0.1, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`L$$], 0.05, "L"}, 
+      Dynamic[$CellContext`La$$], 0.1}, {{
+       Hold[$CellContext`La$$], 0.02, "La"}, 0, 
+      Dynamic[$CellContext`L$$]}, {{
+       Hold[$CellContext`Rb$$], 0.1, "Rb"}, 0.01, 0.1}, {{
+       Hold[$CellContext`Pe$$], 0.05, "Pe"}, 0.01, 0.1}}, Typeset`size$$ = {
+    1273., {316., 320.4999999999999}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`L$$ = 0.05, $CellContext`La$$ = 
+        0.02, $CellContext`Pe$$ = 0.05, $CellContext`Rb$$ = 0.1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Graphics[{
+         Text[
+          Style[
+          "Shear Force Diagram", FontSize -> 20, FontColor -> 
+           Black], {$CellContext`L$$/2, -$CellContext`Pe$$ - 0.1}], 
+         Arrowheads[{-0.01, 0.01}], 
+         Text[
+          Style[
+           StringJoin[{"La = ", 
+             ToString[$CellContext`La$$]}], FontSize -> 12, FontColor -> 
+           Blue], {$CellContext`La$$/2, -0.02}], 
+         Arrow[{{0, -0.01}, {$CellContext`La$$, -0.01}}], 
+         Text[
+          Style[
+           StringJoin[{"L - La = ", 
+             ToString[$CellContext`L$$ - $CellContext`La$$]}], FontSize -> 12,
+            FontColor -> 
+           Blue], {$CellContext`La$$ + ($CellContext`L$$ - $CellContext`La$$)/
+            2, 0.02}], 
+         Arrow[{{$CellContext`La$$, 0.01}, {$CellContext`L$$, 0.01}}], 
+         Rotate[
+          Text[
+           Style[
+            StringJoin[{"Rb = Pa - Pe = ", 
+              ToString[$CellContext`Rb$$]}], FontSize -> 12, FontColor -> 
+            Blue], {$CellContext`La$$/2 - 0.0002, $CellContext`Rb$$/2}], Pi/
+          2], 
+         Arrow[{{$CellContext`La$$/2 + 0.0002, 0}, {$CellContext`La$$/2 + 
+            0.0002, $CellContext`Rb$$}}], 
+         Text[
+          Style[
+           StringJoin[{"Pe = ", 
+             ToString[$CellContext`Pe$$]}], FontSize -> 12, FontColor -> 
+           Blue], {$CellContext`La$$ + ($CellContext`L$$ - $CellContext`La$$)/
+            2, -$CellContext`Pe$$ - 0.01}], 
+         Arrow[{{$CellContext`La$$ + ($CellContext`L$$ - $CellContext`La$$)/2,
+             0}, {$CellContext`La$$ + ($CellContext`L$$ - $CellContext`La$$)/
+             2, -$CellContext`Pe$$}}], 
+         Text[
+          Style["b", FontSize -> 12, FontColor -> Blue], {0 - 0.0005, 0.005}], 
+         Text[
+          Style[
+          "e", FontSize -> 12, FontColor -> Blue], {$CellContext`L$$ + 0.0005,
+            0.005}], 
+         Text[
+          Style[
+          "a", FontSize -> 12, FontColor -> Blue], {$CellContext`La$$ + 
+           0.0005, 0.005}], 
+         Text[
+          Style[
+          "A1", FontSize -> 12, FontColor -> Blue], {$CellContext`La$$/
+           3, $CellContext`Rb$$/2}], 
+         Text[
+          Style[
+          "A2", FontSize -> 12, FontColor -> 
+           Blue], {$CellContext`La$$ + ($CellContext`L$$ - $CellContext`La$$)/
+            3, (-$CellContext`Pe$$)/2}], 
+         Line[{{$CellContext`La$$ + ($CellContext`L$$ - $CellContext`La$$)/
+             2, -$CellContext`Pe$$}, {$CellContext`La$$ + ($CellContext`L$$ - \
+$CellContext`La$$)/2, -$CellContext`Pe$$ - 0.01}}], 
+         Line[{{$CellContext`La$$, $CellContext`Rb$$}, {$CellContext`La$$, \
+-$CellContext`Pe$$ - 0.02}}], 
+         Text[
+          Style[
+           StringJoin[{"Pa = Rb + Pe = ", 
+             ToString[$CellContext`Rb$$]}], FontSize -> 12, FontColor -> 
+           Blue], {$CellContext`La$$, -$CellContext`Pe$$ - 0.02}], 
+         Arrow[{{$CellContext`La$$, $CellContext`Rb$$}, {$CellContext`La$$, \
+-$CellContext`Pe$$}}], Thick, 
+         Line[{{-0.001, 0}, {1, 0}}], 
+         Line[{{0, 1}, {0, -$CellContext`Pe$$ - 0.05}}], 
+         Line[{{$CellContext`L$$, 1}, {$CellContext`L$$, -$CellContext`Pe$$ - 
+            0.05}}], 
+         EdgeForm[Black], 
+         HatchFilling[10], 
+         Rectangle[{0, 0}, {$CellContext`La$$, $CellContext`Rb$$}], 
+         HatchFilling[-10], 
+         Rectangle[{$CellContext`La$$, 
+           0}, {$CellContext`L$$, -$CellContext`Pe$$}]}, 
+        PlotRange -> {{-0.01, $CellContext`L$$ + 0.005}, {-0.16, 0.12}}, 
+        AspectRatio -> 1/2, ImageSize -> Scaled[1]], 
+      "Specifications" :> {{{$CellContext`L$$, 0.05, "L"}, 
+         Dynamic[$CellContext`La$$], 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`La$$, 0.02, "La"}, 0, 
+         Dynamic[$CellContext`L$$], Appearance -> 
+         "Labeled"}, {{$CellContext`Rb$$, 0.1, "Rb"}, 0.01, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`Pe$$, 0.05, "Pe"}, 0.01, 0.1, Appearance -> 
+         "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1321., {393.13403309800196`, 398.86596690199804`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.9236990632181463`*^9, 3.9236991111420336`*^9, {3.923699227206273*^9, 
+   3.923699288657257*^9}, 3.923699319475153*^9, 3.923699379199312*^9},
+ CellLabel->
+  "Out[193]=",ExpressionUUID->"c17a81e0-3159-404f-8dc9-4b621b486385"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Mb", ",", "x1"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"Mb", "=", 
+       RowBox[{
+        RowBox[{"Pa", " ", "La"}], "-", 
+        RowBox[{"Pe", " ", "L"}]}]}], ";", 
+      RowBox[{"Y1", "=", "Mb"}], ";", 
+      RowBox[{"Y2", "=", 
+       RowBox[{"Y3", "-", "Y1"}]}], ";", 
+      RowBox[{"Y3", "=", 
+       RowBox[{"La", " ", 
+        RowBox[{"(", 
+         RowBox[{"Pa", "-", "Pe"}], ")"}]}]}], ";", 
+      RowBox[{"x1", "=", 
+       FractionBox[
+        RowBox[{"La", " ", "Y1"}], 
+        RowBox[{"Y1", "+", "Y2"}]]}], ";", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Bending Moment Diagram - Beam 1\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "20"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Black"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox["L", "2"], ",", 
+              RowBox[{
+               RowBox[{"-", "Mb"}], "-", "0.0001`"}]}], "}"}]}], "]"}], ",", 
+          RowBox[{"Arrowheads", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.01`"}], ",", "0.01`"}], "}"}], "]"}], ",", 
+          RowBox[{"Rotate", "[", 
+           RowBox[{
+            RowBox[{"Text", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"StringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Mb = Y1 = \>\"", ",", 
+                   RowBox[{"ToString", "[", "Mb", "]"}]}], "}"}], "]"}], ",", 
+                RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+                RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "0.0025`"}], ",", 
+                RowBox[{"-", 
+                 FractionBox["Mb", "2"]}]}], "}"}]}], "]"}], ",", 
+            FractionBox["\[Pi]", "2"]}], "]"}], ",", 
+          RowBox[{"Arrow", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "0.002`"}], ",", "0"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "0.002`"}], ",", 
+               RowBox[{"-", "Mb"}]}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"StringJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<x1 = La Y1/(Y1 + Y2) = \>\"", ",", 
+                 RowBox[{"ToString", "[", "x1", "]"}]}], "}"}], "]"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox["x1", "2"], ",", "0.0002`"}], "}"}]}], "]"}], ",", 
+          RowBox[{"Arrow", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0.0001`"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x1", ",", "0.0001`"}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"StringJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<x2 = La - x1 = \>\"", ",", 
+                 RowBox[{"ToString", "[", 
+                  RowBox[{"La", "-", "x1"}], "]"}]}], "}"}], "]"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"x1", "+", 
+               FractionBox[
+                RowBox[{"La", "-", "x1"}], "2"]}], ",", 
+              RowBox[{"Y2", "+", "0.0001`"}]}], "}"}]}], "]"}], ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"x1", ",", 
+               RowBox[{"Y2", "+", "0.0001`"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x1", ",", 
+               RowBox[{"-", "0.0001`"}]}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"La", ",", "0"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"La", ",", 
+               RowBox[{"Y2", "+", "0.0001`"}]}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Arrow", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"La", ",", 
+               RowBox[{"Y2", "+", "0.00005`"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x1", ",", 
+               RowBox[{"Y2", "+", "0.00005`"}]}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"StringJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Y2 = \>\"", ",", 
+                 RowBox[{"ToString", "[", "Y2", "]"}]}], "}"}], "]"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"La", "+", "0.0003`"}], ",", 
+              RowBox[{"-", "0.0001`"}]}], "}"}]}], "]"}], ",", 
+          RowBox[{"Arrow", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"La", ",", "0"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"La", ",", "Y2"}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"StringJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Y3 = \>\"", ",", 
+                 RowBox[{"ToString", "[", "Y3", "]"}]}], "}"}], "]"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"La", "+", 
+               FractionBox[
+                RowBox[{"L", "-", "La"}], "2"], "+", "0.0003`"}], ",", 
+              FractionBox["Y3", "2"]}], "}"}]}], "]"}], ",", 
+          RowBox[{"Arrow", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"La", "+", 
+                FractionBox[
+                 RowBox[{"L", "-", "La"}], "2"]}], ",", "Y2"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"La", "+", 
+                FractionBox[
+                 RowBox[{"L", "-", "La"}], "2"]}], ",", 
+               RowBox[{"Y2", "-", "Y3"}]}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"La", ",", "Y2"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"La", "+", 
+                FractionBox[
+                 RowBox[{"L", "-", "La"}], "2"], "+", "0.0002`"}], ",", 
+               "Y2"}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", 
+               RowBox[{"Y2", "-", "Y3"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"La", "+", 
+                FractionBox[
+                 RowBox[{"L", "-", "La"}], "2"], "+", "0.0002`"}], ",", 
+               RowBox[{"Y2", "-", "Y3"}]}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<A3\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox["x1", "3"], ",", 
+              RowBox[{"-", 
+               FractionBox["Y1", "3"]}]}], "}"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<A4\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"x1", "+", 
+               RowBox[{
+                FractionBox["1", "3"], " ", 
+                RowBox[{"(", 
+                 RowBox[{"La", "-", "x1"}], ")"}], " ", "2"}]}], ",", 
+              FractionBox["Y2", "3"]}], "}"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<A5\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"La", "+", 
+               FractionBox[
+                RowBox[{"L", "-", "La"}], "3"]}], ",", 
+              FractionBox["Y2", "3"]}], "}"}]}], "]"}], ",", "Thick", ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "0.001`"}], ",", "0"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "1"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", 
+               RowBox[{
+                RowBox[{"-", "Pe"}], "-", "0.05`"}]}], "}"}]}], "}"}], "]"}], 
+          ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"L", ",", "1"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"L", ",", 
+               RowBox[{
+                RowBox[{"-", "Pe"}], "-", "0.05`"}]}], "}"}]}], "}"}], "]"}], 
+          ",", 
+          RowBox[{"EdgeForm", "[", "Black", "]"}], ",", 
+          RowBox[{"HatchFilling", "[", "10", "]"}], ",", 
+          RowBox[{"Polygon", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", 
+               RowBox[{"-", "Mb"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"La", ",", 
+               RowBox[{
+                RowBox[{"-", "Mb"}], "+", 
+                RowBox[{"La", " ", 
+                 RowBox[{"(", 
+                  RowBox[{"Pa", "-", "Pe"}], ")"}]}]}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"L", ",", 
+               RowBox[{
+                RowBox[{"-", "Mb"}], "+", 
+                RowBox[{"La", " ", 
+                 RowBox[{"(", 
+                  RowBox[{"Pa", "-", "Pe"}], ")"}]}], "-", 
+                RowBox[{"Pe", " ", 
+                 RowBox[{"(", 
+                  RowBox[{"L", "-", "La"}], ")"}]}]}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+          RowBox[{"HatchFilling", "[", 
+           RowBox[{"-", "10"}], "]"}]}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.01`"}], ",", 
+             RowBox[{"L", "+", "0.005`"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.001`"}], ",", "0.001`"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"AspectRatio", "\[Rule]", 
+         FractionBox["1", "2"]}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"Scaled", "[", "1", "]"}]}]}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"L", ",", "0.05`", ",", "\"\<L\>\""}], "}"}], ",", "La", ",", 
+     "0.1`", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"La", ",", "0.02`", ",", "\"\<La\>\""}], "}"}], ",", "0", ",", 
+     "L", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Pe", ",", "0.018`", ",", "\"\<Pe\>\""}], "}"}], ",", "0.001`", 
+     ",", "0.02`", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Pa", ",", "0.08`", ",", "\"\<Pa\>\""}], "}"}], ",", "0.`", ",",
+      "0.1`", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellLabel->
+  "In[182]:=",ExpressionUUID->"7f3b4bae-58b7-4f0e-9d01-63cabd5050fe"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`L$$ = 0.05, $CellContext`La$$ = 
+    0.02, $CellContext`Pa$$ = 0.08, $CellContext`Pe$$ = 0.018, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`L$$], 0.05, "L"}, 
+      Dynamic[$CellContext`La$$], 0.1}, {{
+       Hold[$CellContext`La$$], 0.02, "La"}, 0, 
+      Dynamic[$CellContext`L$$]}, {{
+       Hold[$CellContext`Pe$$], 0.018, "Pe"}, 0.001, 0.02}, {{
+       Hold[$CellContext`Pa$$], 0.08, "Pa"}, 0., 0.1}}, Typeset`size$$ = {
+    1273., {316., 320.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`L$$ = 0.05, $CellContext`La$$ = 
+        0.02, $CellContext`Pa$$ = 0.08, $CellContext`Pe$$ = 0.018}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`Mb$, $CellContext`x1$}, $CellContext`Mb$ = \
+$CellContext`Pa$$ $CellContext`La$$ - $CellContext`Pe$$ $CellContext`L$$; \
+$CellContext`Y1 = $CellContext`Mb$; $CellContext`Y2 = $CellContext`Y3 - \
+$CellContext`Y1; $CellContext`Y3 = $CellContext`La$$ ($CellContext`Pa$$ - \
+$CellContext`Pe$$); $CellContext`x1$ = $CellContext`La$$ \
+$CellContext`Y1/($CellContext`Y1 + $CellContext`Y2); Graphics[{
+           Text[
+            Style[
+            "Bending Moment Diagram - Beam 1", FontSize -> 20, FontColor -> 
+             Black], {$CellContext`L$$/2, -$CellContext`Mb$ - 0.0001}], 
+           Arrowheads[{-0.01, 0.01}], 
+           Rotate[
+            Text[
+             Style[
+              StringJoin[{"Mb = Y1 = ", 
+                ToString[$CellContext`Mb$]}], FontSize -> 12, FontColor -> 
+              Blue], {-0.0025, -($CellContext`Mb$/2)}], Pi/2], 
+           Arrow[{{-0.002, 0}, {-0.002, -$CellContext`Mb$}}], 
+           Text[
+            Style[
+             StringJoin[{"x1 = La Y1/(Y1 + Y2) = ", 
+               ToString[$CellContext`x1$]}], FontSize -> 12, FontColor -> 
+             Blue], {$CellContext`x1$/2, 0.0002}], 
+           Arrow[{{0, 0.0001}, {$CellContext`x1$, 0.0001}}], 
+           Text[
+            Style[
+             StringJoin[{"x2 = La - x1 = ", 
+               ToString[$CellContext`La$$ - $CellContext`x1$]}], FontSize -> 
+             12, FontColor -> 
+             Blue], {$CellContext`x1$ + ($CellContext`La$$ - \
+$CellContext`x1$)/2, $CellContext`Y2 + 0.0001}], 
+           
+           Line[{{$CellContext`x1$, $CellContext`Y2 + 
+              0.0001}, {$CellContext`x1$, -0.0001}}], 
+           
+           Line[{{$CellContext`La$$, 0}, {$CellContext`La$$, $CellContext`Y2 + 
+              0.0001}}], 
+           
+           Arrow[{{$CellContext`La$$, $CellContext`Y2 + 
+              0.00005}, {$CellContext`x1$, $CellContext`Y2 + 0.00005}}], 
+           Text[
+            Style[
+             StringJoin[{"Y2 = ", 
+               ToString[$CellContext`Y2]}], FontSize -> 12, FontColor -> 
+             Blue], {$CellContext`La$$ + 0.0003, -0.0001}], 
+           
+           Arrow[{{$CellContext`La$$, 
+              0}, {$CellContext`La$$, $CellContext`Y2}}], 
+           Text[
+            Style[
+             StringJoin[{"Y3 = ", 
+               ToString[$CellContext`Y3]}], FontSize -> 12, FontColor -> 
+             Blue], {$CellContext`La$$ + ($CellContext`L$$ - \
+$CellContext`La$$)/2 + 0.0003, $CellContext`Y3/2}], 
+           
+           Arrow[{{$CellContext`La$$ + ($CellContext`L$$ - $CellContext`La$$)/
+               2, $CellContext`Y2}, {$CellContext`La$$ + ($CellContext`L$$ - \
+$CellContext`La$$)/2, $CellContext`Y2 - $CellContext`Y3}}], 
+           
+           Line[{{$CellContext`La$$, $CellContext`Y2}, {$CellContext`La$$ + \
+($CellContext`L$$ - $CellContext`La$$)/2 + 0.0002, $CellContext`Y2}}], 
+           Line[{{
+             0, $CellContext`Y2 - $CellContext`Y3}, {$CellContext`La$$ + \
+($CellContext`L$$ - $CellContext`La$$)/2 + 
+              0.0002, $CellContext`Y2 - $CellContext`Y3}}], 
+           Text[
+            Style[
+            "A3", FontSize -> 12, FontColor -> Blue], {$CellContext`x1$/
+             3, -($CellContext`Y1/3)}], 
+           Text[
+            Style[
+            "A4", FontSize -> 12, FontColor -> 
+             Blue], {$CellContext`x1$ + (1/
+               3) ($CellContext`La$$ - $CellContext`x1$) 2, $CellContext`Y2/
+             3}], 
+           Text[
+            Style[
+            "A5", FontSize -> 12, FontColor -> 
+             Blue], {$CellContext`La$$ + ($CellContext`L$$ - \
+$CellContext`La$$)/3, $CellContext`Y2/3}], Thick, 
+           Line[{{-0.001, 0}, {1, 0}}], 
+           Line[{{0, 1}, {0, -$CellContext`Pe$$ - 0.05}}], 
+           
+           Line[{{$CellContext`L$$, 1}, {$CellContext`L$$, -$CellContext`Pe$$ - 
+              0.05}}], 
+           EdgeForm[Black], 
+           HatchFilling[10], 
+           
+           Polygon[{{
+             0, -$CellContext`Mb$}, {$CellContext`La$$, -$CellContext`Mb$ + \
+$CellContext`La$$ ($CellContext`Pa$$ - $CellContext`Pe$$)}, \
+{$CellContext`L$$, -$CellContext`Mb$ + $CellContext`La$$ ($CellContext`Pa$$ - \
+$CellContext`Pe$$) - $CellContext`Pe$$ ($CellContext`L$$ - \
+$CellContext`La$$)}, {0, 0}}], 
+           HatchFilling[-10]}, 
+          PlotRange -> {{-0.01, $CellContext`L$$ + 0.005}, {-0.001, 0.001}}, 
+          AspectRatio -> 1/2, ImageSize -> Scaled[1]]], 
+      "Specifications" :> {{{$CellContext`L$$, 0.05, "L"}, 
+         Dynamic[$CellContext`La$$], 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`La$$, 0.02, "La"}, 0, 
+         Dynamic[$CellContext`L$$], Appearance -> 
+         "Labeled"}, {{$CellContext`Pe$$, 0.018, "Pe"}, 0.001, 0.02, 
+         Appearance -> "Labeled"}, {{$CellContext`Pa$$, 0.08, "Pa"}, 0., 0.1, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1321., {393.13403309800196`, 398.86596690199804`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.923699096290211*^9},
+ CellLabel->
+  "Out[182]=",ExpressionUUID->"c3662801-6321-4e8c-8816-18c67ce4f1dd"]
+}, Open  ]]
+},
+WindowSize->{1440., 755.25},
+WindowMargins->{{Automatic, 1434}, {Automatic, -6}},
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"79de182a-53d3-48eb-80d8-42acb8246c40"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 249, 4, 28, "Input",ExpressionUUID->"4c723a09-a0cb-4865-bd4f-dff5ee412dc2"],
+Cell[832, 28, 6044, 128, 811, "Output",ExpressionUUID->"c17a81e0-3159-404f-8dc9-4b621b486385"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6913, 161, 13107, 341, 551, "Input",ExpressionUUID->"7f3b4bae-58b7-4f0e-9d01-63cabd5050fe"],
+Cell[20023, 504, 6789, 143, 811, "Output",ExpressionUUID->"c3662801-6321-4e8c-8816-18c67ce4f1dd"]
+}, Open  ]]
+}
+]
+*)
+
