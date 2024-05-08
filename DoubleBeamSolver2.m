@@ -187,7 +187,6 @@ if (1)
     b_1 = 5e-3;
     d_1 = 0.5e-3;
     lc_1 = 0.5 / 200/32;
-    ta_1 = lc_1;
 
     L_2 = 50e-3;
     La_2 = 40e-3;
@@ -197,6 +196,7 @@ if (1)
     lc_2 = 0.5 / 200/32;
     ta_2 = 0;
   
+    ta_1 = lc_1;
     t1= vpa(subs(te_2));
     fprintf('ta_1: %.10f\n', double(vpa(ta_1)));
     fprintf('ta_2: %.10f\n', double(vpa(ta_2)));

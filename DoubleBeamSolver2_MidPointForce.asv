@@ -168,18 +168,18 @@ eq2_2 = ta_2 == 1 / (E_1 * I_2) * ( -A3_2 * (x2_2 + 2/3 * x1_2) ...
 % once the variables have been substituted for with constants (including
 % these 2)
 
+
+% In case of mid support beam, we are swapping the point of application and
+% effect with each other. We are not changing any equations and symbols.
+% Just the meaning of ta_2. Pa_2, te_2, Pe_2 will be swapped together
 % Lets bring two more equations then.
-eq12_1 = te_1 == ta_2;
-eq12_2 = Pe_1 == -Pa_2;
+eq12_1 = te_1 == te_2;
+eq12_2 = Pe_1 == -Pe_2;
 
 % and lets try to solve the system
 
 sol_b12 = solve([eq1_1, eq2_1, eq1_2, eq2_2, eq12_1, eq12_2], [Pa_1, Pe_1, te_1, Pa_2, Pe_2, te_2]);
 te_2 = sol_b12.te_2;
-
-% Lets substitute the value of the solution now.
-%eq_ta_2 = subs(eq1_2, [Pa_1, Pe_1, te_1, Pa_2, Pe_2, te_2],[sol_b12.Pa_1, sol_b12.Pe_1, sol_b12.te_1, sol_b12.Pa_2, sol_b12.Pe_2, sol_b12.te_2])
-
 
 
 %% Test the solution

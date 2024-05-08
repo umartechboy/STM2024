@@ -160,22 +160,27 @@ eq2_2 = ta_2 == 1 / (E_1 * I_2) * ( -A3_2 * (x2_2 + 2/3 * x1_2) ...
 % for this.
 % eq1_1 => Pa_1, Pe_1, te_1
 % eq2_1 => Pa_1, Pe_1,                          [ta_1]
-% eq1_2 =>                  Pa_2, Pe_2,         [te_2]
-% eq2_2 =>                  Pa_2, Pe_2, ta_2
+% eq1_2 =>                  Pa_2, Pe_2, te_2
+% eq2_2 =>                  Pa_2, Pe_2,         [ta_2]
 
 % Also, ta_1 and ta_2 are being considered as constants. Since they
 % depend upon each other, they will always appear together in equations
 % once the variables have been substituted for with constants (including
 % these 2)
 
+
+% In case of mid support beam, we are swapping the point of application and
+% effect with each other. We are not changing any equations and symbols.
+% Just the meaning of ta_2. Pa_2, te_2, Pe_2 will be swapped together
 % Lets bring two more equations then.
-eq12_1 = te_1 == ta_2;
-eq12_2 = Pe_1 == -Pa_2;
+eq12_1 = te_1 == ta_2; % instead of te_1 == te_2;
+eq12_2 = Pe_1 == Pa_2; % instead of Pe_1 == -Pe_2 because these two forces are in the same direction
 
 % and lets try to solve the system
 
 sol_b12 = solve([eq1_1, eq2_1, eq1_2, eq2_2, eq12_1, eq12_2], [Pa_1, Pe_1, te_1, Pa_2, Pe_2, ta_2]);
-ta_2 = sol_b12.ta_2;
+% instead of , [..., te_2], we write , [... , ta_2]
+ta_2 = sol_b12.ta_2; % instead of te_2 = sol_b12.te_2; because we have effect on point a instead
 
 
 %% Test the solution
@@ -187,7 +192,6 @@ if (1)
     b_1 = 5e-3;
     d_1 = 0.5e-3;
     lc_1 = 0.5 / 200/32;
-    ta_1 = lc_1;
 
     L_2 = 50e-3;
     La_2 = 40e-3;
@@ -195,13 +199,15 @@ if (1)
     b_2 = 10e-3;
     d_2 = 5e-3;
     lc_2 = 0.5 / 200/32;
-    te_2 = 0;
+    te_2 = 0; % instead of ta_2
   
-    t1= vpa(subs(ta_2));
+    ta_1 = lc_1;
+    t1= vpa(subs(ta_2)); % instead of te_2
     fprintf('ta_1: %.10f\n', double(vpa(ta_1)));
+    fprintf('ta_2: %.10f\n', double(vpa(te_2))); % instead of  ta_2 because we have effect on point a instead
     
     ta_1 = ta_1 + lc_1; % Give one step
-    t2= vpa(subs(ta_2));
+    t2= vpa(subs(ta_2)); % instead of te_2
     tn = t2 - t1
     TF = tn / lc_1
     fprintf('Minimum nano movement: %.2f\n', double(vpa(tn)) * 1e9);
