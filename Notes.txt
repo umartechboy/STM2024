@@ -1,3 +1,20 @@
-OPA124, OPA627, LTC6268
-40 AWG
-100M Resistor
+https://dberard.com/home-built-stm/electronics/
+
+	OpAmp: OPA124U, OPA627, LTC6268,  TL07x
+	DAC: PCM1798 
+	LT1469 buffer
+	HOPG
+	1pA input bias works
+	40 AWG
+	100M Resistor
+	28byj-48
+	Ball Screws: https://www.mcmaster.com/screws/easy-adjust-ball-point-set-screws/
+	Teflon standoff
+		https://www.digikey.ca/en/products/detail/keystone-electronics/11301/2170335?from=home&s=N4IgTCBcDaINIFMCeBnALgewHYIAQFEAbBAYzQCdsBLElXARnoGYAGekAXQF8g
+	
+	DAC8814 4-channel 16-bit 
+	
+	Shield the whole STM
+ The fine screw moves 250 um/revolution, and the STM body’s lever reduction reduces the motion by a factor of about 20. This gives a step size of 250um/2048/20 = 6 nm.
+ 
+ Piezo moves: 0.16 mm/Volt 20mm dia https://www.digikey.ca/en/products/detail/7BB-20-6/490-7711-ND/4358151
