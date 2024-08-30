@@ -62,9 +62,8 @@ DAC8814::DAC8814(byte cs, byte ldac)
 
 void DAC8814::begin()
 {
-    // TBD
+    SPI.beginTransaction(SPISettings(24000000, BitOrder::LSBFIRST, SPI_MODE0));
     //SPIFIFO.begin(_cs, SPI_CLOCK_24MHz, SPI_MODE0);
-    SPI.begin();
 }
 
 
@@ -76,6 +75,14 @@ void DAC8814::begin()
 
 void DAC8814::setOutput(uint16_t val, byte ch)
 {
+    // Soft FIFO
+    uint8_t buffer[3] = {ch, (val >> 8) & 0xFF, val & 0xFF}; // Combine byte and 16-bit value
+    SPI.transfer(buffer, sizeof(buffer)); // Transfer the entire buffer
+    
+    // Non-FIFO approach
+    // SPI.transfer(ch);    
+    // SPI.transfer16(val);
+
     // SPIFIFO.write(ch, SPI_CONTINUE);
     // SPIFIFO.write16(val);
     // SPIFIFO.read();

@@ -34,8 +34,8 @@ extern unsigned int pixelsPerLine;
 extern unsigned int samplesPerPixel;
 extern int scanSize; // Size of the scan in LSBs
 extern int bias; // Sample bias in LSBs
-extern boolean scanningEnabled;
-extern boolean engaged;
+extern bool scanningEnabled;
+extern bool engaged;
 
 // Sample, pixel and line counters:
 extern volatile unsigned int sampleCounter, pixelCounter, lineCounter;
@@ -43,7 +43,7 @@ extern volatile int zAvg, eAvg; // Accumulates Z and error samples for later ave
 
 
 // PI variables:
-extern boolean pidEnabled; // Setting this to false desiables PI control
+extern bool pidEnabled; // Setting this to false desiables PI control
 extern int setpoint, setpointLog; // setpointLog = log(|setpoint|)
 extern int Kp, Ki; // Proportional and integral gains
 extern volatile int16_t input; // ADC input data
@@ -64,7 +64,7 @@ int saturate(int val, int max, int min);
 void updateStepSizes();
 void moveTip(int xf, int yf);
 void waitTimeStep();
-boolean engage();
+bool engage();
 void retract();
 void resetScan();
 void incrementScan(void);

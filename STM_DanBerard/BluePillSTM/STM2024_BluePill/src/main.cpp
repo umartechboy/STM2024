@@ -85,8 +85,8 @@ unsigned int pixelsPerLine = IMAGE_PIXELS * 2;
 unsigned int samplesPerPixel;
 int scanSize = SCAN_SIZE; // Size of the scan in LSBs
 int bias = BIAS; // Sample bias in LSBs
-boolean scanningEnabled = false;
-boolean engaged = false;
+bool scanningEnabled = false;
+bool engaged = false;
 
 
 // Scan counters. Counts from -SCAN_COUNTER_LIMIT to SCAN_COUNTER_LIMIT - 1
@@ -103,8 +103,8 @@ volatile int zAvg = 0, eAvg = 0; // Accumulates Z and error samples for later av
 
 // Ping-pong buffers:
 byte data1[DATA_BUFFER_LENGTH], data2[DATA_BUFFER_LENGTH]; // Data buffers
-volatile boolean fillData1 = true; // Indicates which buffer to fill
-volatile boolean sendData = false; // Indicates that data is ready to be sent over USB
+volatile bool fillData1 = true; // Indicates which buffer to fill
+volatile bool sendData = false; // Indicates that data is ready to be sent over USB
 
 
 // Position variables:
@@ -114,7 +114,7 @@ volatile int x = 0, y = 0, z = 0; // Scanner coordinates in LSBs
 
 
 // PI variables:
-boolean pidEnabled = true; // Setting this to false desiables PI control
+bool pidEnabled = true; // Setting this to false desiables PI control
 int setpoint = SETPOINT, setpointLog; // setpointLog = log(|setpoint|)
 int Kp = KP, Ki = KI; // Proportional and integral gains
 volatile int16_t input; // ADC input data
@@ -130,7 +130,7 @@ const unsigned int shift = POSITION_BITS - DAC_BITS; // Number of bits to increa
 
 
 // Timers:
-//TBD
+HardwareTimer* scanTimer;
 //IntervalTimer scanTimer;
 
 
@@ -139,7 +139,7 @@ DAC8814 dac(CS_DAC, LDAC); // 16-bit quad DAC
 LTC2326_16 adc(CS_ADC, CNV, BUSY); // 16-bit ADC
 const int MAX_DAC_OUT = (1 << (DAC_BITS - 1)) - 1; // DAC upper bound
 const int MIN_DAC_OUT = -(1 << (DAC_BITS - 1)); // DAC lower bound
-boolean saturationCompensation = true; // The LTC2326-16 seems to output 0 when its input saturates. This is a temporary fix.
+bool saturationCompensation = true; // The LTC2326-16 seems to output 0 when its input saturates. This is a temporary fix.
 
 
 /**************************************************************************/
@@ -164,7 +164,11 @@ void setup()
   adc.convert(); // Start an ADC conversion
 
   // Start the scan/PI/sigma-delta timer:
-  //TBD
+    scanTimer = new HardwareTimer(((TIM_TypeDef*)TIM1_BASE));
+    scanTimer->setOverflow(dt, MICROSEC_FORMAT);
+    scanTimer->resume();
+    scanTimer->attachInterrupt(incrementScan);
+
   //scanTimer.priority(0);
   //scanTimer.begin(incrementScan, dt);
 }
@@ -504,7 +508,7 @@ void waitTimeStep()
 */
 /**************************************************************************/
 
-boolean engage()
+bool engage()
 {
   scanningEnabled = true;
   engaged = true;
@@ -540,7 +544,7 @@ void retract()
 */
 /**************************************************************************
 
-boolean engageScanner()
+bool engageScanner()
 {  
   if(!engaged)
   {

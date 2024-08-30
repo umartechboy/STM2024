@@ -40,7 +40,7 @@ commands used to control the microscope.
 #include "variables.h"
 #include "logTable.h"
 
-boolean serialEnabled = false; // Enables serial transfer of data
+bool serialEnabled = false; // Enables serial transfer of data
 void checkSerial()
 {
   
@@ -95,7 +95,7 @@ void serialCommand(String str)
       
       else if(command == "SS") // Scan size in LSBs
       {
-        boolean scanningEnabledOnCommand = scanningEnabled;
+        bool scanningEnabledOnCommand = scanningEnabled;
         int new_scanSize = Serial.parseInt();
         int xNew, yNew;
         
@@ -121,7 +121,7 @@ void serialCommand(String str)
       
       else if(command == "IP") // Image pixels
       {        
-        boolean scanningEnabledOnCommand = scanningEnabled;
+        bool scanningEnabledOnCommand = scanningEnabled;
         pixelsPerLine = Serial.parseInt() * 2;
         resetScan();
         if(scanningEnabledOnCommand) scanningEnabled = true;
@@ -130,7 +130,7 @@ void serialCommand(String str)
       
       else if(command == "LR") // Line rate in Hz
       {
-        boolean scanningEnabledOnCommand = scanningEnabled;
+        bool scanningEnabledOnCommand = scanningEnabled;
         lineRate = (float)Serial.parseInt() / 100.0f; // Line rate is multiplied by 100 for the transmission
         while(pixelCounter != 0); // Wait for the scanner to finish scanning a line
         scanningEnabled = false; // Pause the scan
@@ -141,7 +141,7 @@ void serialCommand(String str)
       
       else if(command == "XO") // X-offset
       {
-        boolean scanningEnabledOnCommand = scanningEnabled;
+        bool scanningEnabledOnCommand = scanningEnabled;
         int previous_xo = xo;
         int new_xo = Serial.parseInt();
         scanningEnabled = false; // Pause the scan
@@ -153,7 +153,7 @@ void serialCommand(String str)
       
       else if(command == "YO") // Y-offset
       {
-        boolean scanningEnabledOnCommand = scanningEnabled;
+        bool scanningEnabledOnCommand = scanningEnabled;
         int previous_yo = yo;
         int new_yo = Serial.parseInt();
         scanningEnabled = false;

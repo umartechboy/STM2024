@@ -89,6 +89,7 @@ bool LTC2326_16::busy()
 
 void LTC2326_16::begin()
 {
+    SPI.beginTransaction(SPISettings(24000000, BitOrder::LSBFIRST, SPI_MODE0));
     //SPIFIFO.begin(_cs, SPI_CLOCK_24MHz, SPI_MODE1);
 }
 
@@ -102,8 +103,11 @@ void LTC2326_16::begin()
 int16_t LTC2326_16::read()
 {
     int16_t val;
-
-    // digitalWriteFast(_cnv, LOW); // Reset CNV for another conversion later on
+    int16_t outVal = 0;
+    digitalWriteFast(_cnv, LOW); // Reset CNV for another conversion later on
+    
+    //SPI.transfer16(0);
+    SPI.transfer((uint8_t*)(&outVal), (uint8_t*)(&val), 2);
     // SPIFIFO.write16(0);
     // val = SPIFIFO.read();
     

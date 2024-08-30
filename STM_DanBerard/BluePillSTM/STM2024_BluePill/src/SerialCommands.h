@@ -3,4 +3,4 @@
 
 void serialCommand(String str);
 void checkSerial();
-extern boolean serialEnabled; // Enables serial transfer of data
+extern bool serialEnabled; // Enables serial transfer of data
