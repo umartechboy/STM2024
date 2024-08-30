@@ -39,3 +39,18 @@ C:\Users\Dan Berard\Documents\Visual Studio 2013\Projects\STM\STM\obj\Debug\STM.
 C:\Users\Dan Berard\Documents\Visual Studio 2013\Projects\STM\STM\obj\Debug\STM.csproj.GenerateResource.Cache
 C:\Users\Dan Berard\Documents\Visual Studio 2013\Projects\STM\STM\obj\Debug\STM.exe.manifest
 C:\Users\Dan Berard\Documents\Visual Studio 2013\Projects\STM\STM\obj\Debug\STM.application
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.csproj.AssemblyReference.cache
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.Form1.resources
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.Form2.resources
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.Properties.Resources.resources
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.csproj.GenerateResource.cache
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.csproj.CoreCompileInputs.cache
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.exe
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.pdb
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\bin\Debug\STM.exe.config
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\bin\Debug\STM.exe.manifest
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\bin\Debug\STM.application
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\bin\Debug\STM.exe
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\bin\Debug\STM.pdb
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.exe.manifest
+D:\UserProfile\Documents\GitHub\STM2024\STM_DanBerard\STMDotNet\STM\STM\obj\Debug\STM.application

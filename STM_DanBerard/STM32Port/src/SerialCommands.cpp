@@ -48,6 +48,8 @@ void checkSerial()
   
   if(Serial.available() > 0)
   {
+    int i = Serial.peek();
+    Serial.println(i);
     for(int i = 0; i < 2; i++)  // Accepts 2 char commands
     {
       delay(1); // This seems to be necessary, not sure why
@@ -88,7 +90,7 @@ void serialCommand(String str)
       {
         serialEnabled = false;
         Serial.flush();
-        Serial.end();
+        // Serial.end(); // this removes USB serial as well
         digitalWriteFast(SERIAL_LED, LOW);
       } 
       

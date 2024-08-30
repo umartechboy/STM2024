@@ -150,19 +150,11 @@ bool saturationCompensation = true; // The LTC2326-16 seems to output 0 when its
 
 void setup()
 {
-  Serial.begin(2000000);
-  pinMode(PC13, OUTPUT);
-
-  int i = 0;
-  while(1){
-    digitalWrite(PC13, i % 2);
-    Serial.println(i++);
-    delay(100);
-  }
-  pinMode(SERIAL_LED, OUTPUT);
-  pinMode(TUNNEL_LED, OUTPUT);
-  digitalWrite(SERIAL_LED, LOW);
-  digitalWrite(TUNNEL_LED, LOW);
+  Serial.begin(115200); // Enable by default
+  pinMode(pinNametoDigitalPin(SERIAL_LED), OUTPUT);
+  pinMode(pinNametoDigitalPin(TUNNEL_LED), OUTPUT);
+  digitalWrite(pinNametoDigitalPin(SERIAL_LED), LOW);
+  digitalWrite(pinNametoDigitalPin(TUNNEL_LED), LOW);
 
   // Set the sample bias:
   dac.begin();
@@ -189,8 +181,15 @@ void setup()
 */
 /**************************************************************************/
 
+long lastStatusUpdateAt = 0;
+int lastStatus = 0;
 void loop()
 {
+    if (millis() - lastStatusUpdateAt > 500){
+      digitalWriteFast(SERIAL_LED, (lastStatus++) % 2);
+      lastStatusUpdateAt = millis();
+    }
+    
   checkSerial(); // Check for incoming serial commands. See "SerialCommands" tab.
   
   // Illuminate tunelling LED if the tunneling current is > setpoint/2:

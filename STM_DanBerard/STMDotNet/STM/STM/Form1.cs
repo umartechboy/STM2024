@@ -498,6 +498,9 @@ namespace STM
             try
             {
                 // Open serial port:
+                serialPort1.ReadBufferSize = 250000;
+                serialPort1.DtrEnable = true; // STM serial doesn't reply without DTR!!
+                serialPort1.Encoding = new UTF8Encoding();
                 serialPort1.Open();
                 serialPort1.DiscardInBuffer();
                 serialPort1.DiscardOutBuffer();

@@ -6,7 +6,7 @@
 #define CS_ADC PinName::PA_0                            // ADC chip select pin
 #define CNV PinName::PA_0                               // ADC CNV pin - initiates a conversion
 #define BUSY PinName::PA_0                              // ADC BUSY pin
-#define SERIAL_LED PinName::PA_0                        // Indicates serial data transmission
+#define SERIAL_LED PinName::PC_13                        // Indicates serial data transmission
 #define TUNNEL_LED PinName::PA_0                        // Indicates tunneling
 
 

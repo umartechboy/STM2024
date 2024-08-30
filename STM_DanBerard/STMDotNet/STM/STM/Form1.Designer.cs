@@ -310,7 +310,7 @@
             this.numericUpDown_lineRate.Size = new System.Drawing.Size(83, 20);
             this.numericUpDown_lineRate.TabIndex = 21;
             this.numericUpDown_lineRate.Value = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});
