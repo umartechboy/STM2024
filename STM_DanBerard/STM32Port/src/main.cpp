@@ -150,6 +150,15 @@ bool saturationCompensation = true; // The LTC2326-16 seems to output 0 when its
 
 void setup()
 {
+  Serial.begin(2000000);
+  pinMode(PC13, OUTPUT);
+
+  int i = 0;
+  while(1){
+    digitalWrite(PC13, i % 2);
+    Serial.println(i++);
+    delay(100);
+  }
   pinMode(SERIAL_LED, OUTPUT);
   pinMode(TUNNEL_LED, OUTPUT);
   digitalWrite(SERIAL_LED, LOW);

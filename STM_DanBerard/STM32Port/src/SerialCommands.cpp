@@ -40,7 +40,7 @@ commands used to control the microscope.
 #include "variables.h"
 #include "logTable.h"
 
-bool serialEnabled = false; // Enables serial transfer of data
+bool serialEnabled = true; // Enables serial transfer of data
 void checkSerial()
 {
   
