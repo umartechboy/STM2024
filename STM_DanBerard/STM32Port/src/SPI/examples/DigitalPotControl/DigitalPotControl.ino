@@ -7,7 +7,7 @@
   W - this is the pot's wiper, which changes when you set it
   B - connect this to ground.
 
- The AD5206 is SPI-compatible,and to command it, you send two bytes,
+ The AD5206 is SPI_1-compatible,and to command it, you send two bytes,
  one with the channel number (0 - 5) and one with the resistance value for the
  channel (0 - 255).
 
@@ -27,7 +27,7 @@
 */
 
 
-// inslude the SPI library:
+// inslude the SPI_1 library:
 #include <SPI.h>
 
 
@@ -37,8 +37,8 @@ const int slaveSelectPin = 10;
 void setup() {
   // set the slaveSelectPin as an output:
   pinMode(slaveSelectPin, OUTPUT);
-  // initialize SPI:
-  SPI.begin();
+  // initialize SPI_1:
+  SPI_1.begin();
 }
 
 void loop() {
@@ -63,9 +63,9 @@ void loop() {
 void digitalPotWrite(int address, int value) {
   // take the SS pin low to select the chip:
   digitalWrite(slaveSelectPin, LOW);
-  //  send in the address and value via SPI:
-  SPI.transfer(address);
-  SPI.transfer(value);
+  //  send in the address and value via SPI_1:
+  SPI_1.transfer(address);
+  SPI_1.transfer(value);
   // take the SS pin high to de-select the chip:
   digitalWrite(slaveSelectPin, HIGH);
 }

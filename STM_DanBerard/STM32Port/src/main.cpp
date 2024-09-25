@@ -63,9 +63,6 @@ SCK_ADC and SCK_DAC -> pin 13.
 
 /**************************************************************************/
 
-// TBD
-//#include <SPIFIFO.h>
-//#include "SPIFIFO/SPIFIFO.h"
 #include "logTable.h"
 #include "DAC8814/DAC8814.h"
 #include "LTC2326_16/LTC2326_16.h"
@@ -168,10 +165,11 @@ void setup()
     scanTimer = new HardwareTimer(((TIM_TypeDef*)TIM1_BASE));
     scanTimer->setOverflow(dt, MICROSEC_FORMAT);
     scanTimer->resume();
-    scanTimer->attachInterrupt(incrementScan);
+    //scanTimer->attachInterrupt(incrementScan);
 
   //scanTimer.priority(0);
   //scanTimer.begin(incrementScan, dt);
+  Serial.print("> ");
 }
 
 
@@ -183,12 +181,43 @@ void setup()
 
 long lastStatusUpdateAt = 0;
 int lastStatus = 0;
+int lastDac = 0;
 void loop()
 {
+  
+  if(Serial.available()){
+    
+    String com = Serial.readStringUntil('\n');
+    String arg = "";
+    if(com.indexOf('=') > 0){
+      arg = com.substring(com.indexOf('=') + 1);
+      com = com.substring(0, com.indexOf('='));
+      arg.trim(); com.trim();
+
+    }
+    if (com.startsWith("dac") && arg != ""){
+      int ind = com[com.length() - 1] - '0';
+      int val = arg.toInt();
+      Serial.printf("Set DAC %d = %d\r\n", ind, val);        
+      dac.setOutput(val, ind);
+    }
+    
+    Serial.print("> ");
+  }
+lastDac += 1;      
+if (lastDac >= 0xFFFF) 
+  lastDac = 0;
+      dac.setOutput(lastDac, 0);
+      dac.setOutput(lastDac, 1);
+      dac.setOutput(lastDac, 2);
+      dac.setOutput(lastDac, 3);
+
     if (millis() - lastStatusUpdateAt > 500){
       digitalWriteFast(SERIAL_LED, (lastStatus++) % 2);
+      Serial.println(lastDac);
       lastStatusUpdateAt = millis();
     }
+  return;
     
   checkSerial(); // Check for incoming serial commands. See "SerialCommands" tab.
   

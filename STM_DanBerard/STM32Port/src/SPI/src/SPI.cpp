@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2010 by Cristian Maglie <c.maglie@arduino.cc>
  * Copyright (c) 2014 by Paul Stoffregen <paul@pjrc.com> (Transaction API)
- * SPI Master library for arduino.
+ * SPI_1 Master library for arduino.
  *
  * This file is free software; you can redistribute it and/or modify
  * it under the terms of either the GNU General Public License version 2
@@ -11,7 +11,8 @@
 
 #include "SPI.h"
 
-SPIClass SPI;
+SPIClass SPI_1;
+SPIClass SPI_2(PB15, PB14, PB13, NC);
 
 /**
   * @brief  Default constructor. Uses pin configuration of variant.h.
@@ -25,19 +26,19 @@ SPIClass::SPIClass()
 }
 
 /**
-  * @brief  Constructor to create another SPI instance attached to another SPI
-  *         peripheral different of the default SPI. All pins must be attached to
-  *         the same SPI peripheral. See datasheet of the microcontroller.
-  * @param  mosi: SPI mosi pin. Accepted format: number or Arduino format (Dx)
+  * @brief  Constructor to create another SPI_1 instance attached to another SPI_1
+  *         peripheral different of the default SPI_1. All pins must be attached to
+  *         the same SPI_1 peripheral. See datasheet of the microcontroller.
+  * @param  mosi: SPI_1 mosi pin. Accepted format: number or Arduino format (Dx)
   *         or ST format (Pxy).
-  * @param  miso: SPI miso pin. Accepted format: number or Arduino format (Dx)
+  * @param  miso: SPI_1 miso pin. Accepted format: number or Arduino format (Dx)
   *         or ST format (Pxy).
-  * @param  sclk: SPI clock pin. Accepted format: number or Arduino format (Dx)
+  * @param  sclk: SPI_1 clock pin. Accepted format: number or Arduino format (Dx)
   *         or ST format (Pxy).
-  * @param  ssel: SPI ssel pin (optional). Accepted format: number or
+  * @param  ssel: SPI_1 ssel pin (optional). Accepted format: number or
   *         Arduino format (Dx) or ST format (Pxy). By default is set to NC.
   *         This pin must correspond to a hardware CS pin which can be managed
-  *         by the SPI peripheral itself. See the datasheet of the microcontroller
+  *         by the SPI_1 peripheral itself. See the datasheet of the microcontroller
   *         or look at PinMap_SPI_SSEL[] inside the file PeripheralPins.c
   *         corresponding to the board. If you configure this pin you can't use
   *         another CS pin and don't pass a CS pin as parameter to any functions
@@ -52,7 +53,7 @@ SPIClass::SPIClass(uint32_t mosi, uint32_t miso, uint32_t sclk, uint32_t ssel)
 }
 
 /**
-  * @brief  Initialize the SPI instance.
+  * @brief  Initialize the SPI_1 instance.
   */
 void SPIClass::begin(void)
 {
@@ -64,9 +65,9 @@ void SPIClass::begin(void)
 }
 
 /**
-  * @brief  This function should be used to configure the SPI instance in case you
+  * @brief  This function should be used to configure the SPI_1 instance in case you
   *         don't use the default parameters set by the begin() function.
-  * @param  settings: SPI settings(clock speed, bit order, data mode).
+  * @param  settings: SPI_1 settings(clock speed, bit order, data mode).
   */
 void SPIClass::beginTransaction(SPISettings settings)
 {
@@ -87,7 +88,7 @@ void SPIClass::endTransaction(void)
 }
 
 /**
-  * @brief  Deinitialize the SPI instance and stop it.
+  * @brief  Deinitialize the SPI_1 instance and stop it.
   */
 void SPIClass::end(void)
 {
@@ -135,15 +136,15 @@ void SPIClass::setDataMode(SPIMode mode)
 /**
   * @brief  Deprecated function.
   *         Configure the clock speed
-  * @param  divider: the SPI clock can be divided by values from 1 to 255.
-  *         If 0, default SPI speed is used.
+  * @param  divider: the SPI_1 clock can be divided by values from 1 to 255.
+  *         If 0, default SPI_1 speed is used.
   */
 void SPIClass::setClockDivider(uint8_t divider)
 {
   if (divider == 0) {
     _spiSettings.clockFreq = SPI_SPEED_CLOCK_DEFAULT;
   } else {
-    /* Get clk freq of the SPI instance and compute it */
+    /* Get clk freq of the SPI_1 instance and compute it */
     _spiSettings.clockFreq = spi_getClkFreq(&_spi) / divider;
   }
 
@@ -153,7 +154,7 @@ void SPIClass::setClockDivider(uint8_t divider)
 }
 
 /**
-  * @brief  Transfer one byte on the SPI bus.
+  * @brief  Transfer one byte on the SPI_1 bus.
   *         begin() or beginTransaction() must be called at least once before.
   * @param  data: byte to send.
   * @param  skipReceive: skip receiving data after transmit or not.
@@ -168,7 +169,7 @@ uint8_t SPIClass::transfer(uint8_t data, bool skipReceive)
 }
 
 /**
-  * @brief  Transfer two bytes on the SPI bus in 16 bits format.
+  * @brief  Transfer two bytes on the SPI_1 bus in 16 bits format.
   *         begin() or beginTransaction() must be called at least once before.
   * @param  data: bytes to send.
   * @param  skipReceive: skip receiving data after transmit or not.
@@ -215,10 +216,10 @@ void SPIClass::transfer(void *buf, size_t count, bool skipReceive)
   *         one to receive data.
   *         begin() or beginTransaction() must be called at least once before.
   * @param  tx_buf: array of Tx bytes that is filled by the user before starting
-  *                 the SPI transfer. If NULL, default dummy 0xFF bytes will be
+  *                 the SPI_1 transfer. If NULL, default dummy 0xFF bytes will be
   *                 clocked out.
   * @param  rx_buf: array of Rx bytes that will be filled by the slave during
-  *                 the SPI transfer. If NULL, the received data will be discarded.
+  *                 the SPI_1 transfer. If NULL, the received data will be discarded.
   * @param  count: number of bytes to send/receive.
   */
 void SPIClass::transfer(const void *tx_buf, void *rx_buf, size_t count)
@@ -262,7 +263,7 @@ void SPIClass::detachInterrupt(void)
 #if defined(SUBGHZSPI_BASE)
 void SUBGHZSPIClass::enableDebugPins(uint32_t mosi, uint32_t miso, uint32_t sclk, uint32_t ssel)
 {
-  /* Configure SPI GPIO pins */
+  /* Configure SPI_1 GPIO pins */
   pinmap_pinout(digitalPinToPinName(mosi), PinMap_SPI_MOSI);
   pinmap_pinout(digitalPinToPinName(miso), PinMap_SPI_MISO);
   pinmap_pinout(digitalPinToPinName(sclk), PinMap_SPI_SCLK);

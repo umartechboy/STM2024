@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2010 by Cristian Maglie <c.maglie@arduino.cc>
  * Copyright (c) 2014 by Paul Stoffregen <paul@pjrc.com> (Transaction API)
- * SPI Master library for arduino.
+ * SPI_1 Master library for arduino.
  *
  * This file is free software; you can redistribute it and/or modify
  * it under the terms of either the GNU General Public License version 2
@@ -18,7 +18,7 @@ extern "C" {
 #include "utility/spi_com.h"
 }
 
-// SPI_HAS_TRANSACTION means SPI has
+// SPI_HAS_TRANSACTION means SPI_1 has
 //   - beginTransaction()
 //   - endTransaction()
 //   - usingInterrupt()
@@ -26,10 +26,10 @@ extern "C" {
 #define SPI_HAS_TRANSACTION 1
 
 // Compatibility with sketches designed for AVR @ 16 MHz could not
-// be ensured as SPI frequency depends of system clock configuration.
-// user have to use appropriate divider for the SPI clock
+// be ensured as SPI_1 frequency depends of system clock configuration.
+// user have to use appropriate divider for the SPI_1 clock
 // This function should not be used in new project.
-// Use SPISettings with SPI.beginTransaction() to configure SPI parameters.
+// Use SPISettings with SPI_1.beginTransaction() to configure SPI_1 parameters.
 #define SPI_CLOCK_DIV2   2
 #define SPI_CLOCK_DIV4   4
 #define SPI_CLOCK_DIV8   8
@@ -125,26 +125,26 @@ class SPIClass {
     void begin(void);
     void end(void);
 
-    /* This function should be used to configure the SPI instance in case you
+    /* This function should be used to configure the SPI_1 instance in case you
      * don't use default parameters.
      */
     void beginTransaction(SPISettings settings);
     void endTransaction(void);
 
-    /* Transfer functions: must be called after initialization of the SPI
+    /* Transfer functions: must be called after initialization of the SPI_1
      * instance with begin() or beginTransaction().
      */
     uint8_t transfer(uint8_t data, bool skipReceive = SPI_TRANSMITRECEIVE);
     uint16_t transfer16(uint16_t data, bool skipReceive = SPI_TRANSMITRECEIVE);
     void transfer(void *buf, size_t count, bool skipReceive = SPI_TRANSMITRECEIVE);
 
-    /* Expand SPI API
+    /* Expand SPI_1 API
      * https://github.com/arduino/ArduinoCore-API/discussions/189
      */
     void transfer(const void *tx_buf, void *rx_buf, size_t count);
 
     /* These methods are deprecated and kept for compatibility.
-     * Use SPISettings with SPI.beginTransaction() to configure SPI parameters.
+     * Use SPISettings with SPI_1.beginTransaction() to configure SPI_1 parameters.
      */
     void setBitOrder(BitOrder);
     void setDataMode(uint8_t);
@@ -172,7 +172,8 @@ class SPIClass {
     SPISettings   _spiSettings = SPISettings();
 };
 
-extern SPIClass SPI;
+extern SPIClass SPI_1;
+extern SPIClass SPI_2;
 
 #if defined(SUBGHZSPI_BASE)
 class SUBGHZSPIClass : public SPIClass {

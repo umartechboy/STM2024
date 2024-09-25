@@ -1,13 +1,13 @@
 #pragma once
 
 // Pin definitions:
-#define CS_DAC PinName::PA_0                            // DAC chip select pin
-#define LDAC PinName::PA_0                              // Load DAC pin, not currently used
-#define CS_ADC PinName::PA_0                            // ADC chip select pin
-#define CNV PinName::PA_0                               // ADC CNV pin - initiates a conversion
-#define BUSY PinName::PA_0                              // ADC BUSY pin
+#define LDAC PinName::PB_0                             // Load DAC pin, not currently used
+#define CS_DAC PinName::PA_3                            // DAC chip select pin
+#define CS_ADC PinName::PB_9                            // ADC chip select pin
+#define CNV PinName::PB_8                               // ADC CNV pin - initiates a conversion
+#define BUSY PinName::PB_7                              // ADC BUSY pin
 #define SERIAL_LED PinName::PC_13                        // Indicates serial data transmission
-#define TUNNEL_LED PinName::PA_0                        // Indicates tunneling
+#define TUNNEL_LED PinName::PC_14                        // Indicates tunneling
 
 
 // DAC channel addresses:

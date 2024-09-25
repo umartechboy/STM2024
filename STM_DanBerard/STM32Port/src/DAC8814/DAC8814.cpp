@@ -43,12 +43,12 @@ http://dberard.com/home-built-stm/
 */
 /**************************************************************************/
 
-DAC8814::DAC8814(byte cs, byte ldac)
+DAC8814::DAC8814(PinName cs, PinName ldac)
 {
-  pinMode(cs, OUTPUT);
-  pinMode(ldac, OUTPUT);
-  digitalWrite(cs, HIGH);
-  digitalWrite(ldac, LOW);
+  pinMode(pinNametoDigitalPin(cs), OUTPUT);
+  pinMode(pinNametoDigitalPin(ldac), OUTPUT);
+  digitalWriteFast(cs, HIGH);
+  digitalWriteFast(ldac, LOW);
   _cs = cs;
   _ldac = ldac;
 }
@@ -56,13 +56,14 @@ DAC8814::DAC8814(byte cs, byte ldac)
 
 /**************************************************************************/
 /*
-    Setup the SPI port at 24 MHz.
+    Setup the SPI_1 port at 24 MHz.
 */
 /**************************************************************************/
 
 void DAC8814::begin()
 {
-    SPI.beginTransaction(SPISettings(24000000, BitOrder::LSBFIRST, SPI_MODE0));
+    SPI_1.beginTransaction(SPISettings(24000000, BitOrder::MSBFIRST, SPI_MODE0));
+
     //SPIFIFO.begin(_cs, SPI_CLOCK_24MHz, SPI_MODE0);
 }
 
@@ -75,13 +76,18 @@ void DAC8814::begin()
 
 void DAC8814::setOutput(uint16_t val, byte ch)
 {
+    digitalWriteFast(_cs, LOW);
     // Soft FIFO
     uint8_t buffer[3] = {ch, (val >> 8) & 0xFF, val & 0xFF}; // Combine byte and 16-bit value
-    SPI.transfer(buffer, sizeof(buffer)); // Transfer the entire buffer
+    SPI_1.transfer(buffer, sizeof(buffer)); // Transfer the entire buffer
     
+    digitalWriteFast(_cs, HIGH);
+    //digitalWriteFast(_ldac, LOW);
+    //digitalWriteFast(_ldac, HIGH);
+
     // Non-FIFO approach
-    // SPI.transfer(ch);    
-    // SPI.transfer16(val);
+    // SPI_1.transfer(ch);    
+    // SPI_1.transfer16(val);
 
     // SPIFIFO.write(ch, SPI_CONTINUE);
     // SPIFIFO.write16(val);

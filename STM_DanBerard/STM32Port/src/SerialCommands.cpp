@@ -139,7 +139,7 @@ void serialCommand(String str)
         updateStepSizes();
         if(scanningEnabledOnCommand) scanningEnabled = true; // Resume scan
       }
-     
+           
       
       else if(command == "XO") // X-offset
       {
@@ -176,8 +176,7 @@ void serialCommand(String str)
       {
         bias = Serial.parseInt();
         noInterrupts();
-        //TBD
-        //dac.setOutput((uint16_t)(bias + 32768), DAC_CH_BIAS); // Set the sample bias
+        dac.setOutput((uint16_t)(bias + 32768), DAC_CH_BIAS); // Set the sample bias
         interrupts();          
       }
       

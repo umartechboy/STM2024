@@ -42,14 +42,14 @@ class DAC8814
   
   public:
     
-    DAC8814(byte cs, byte ldac); // Constructor
-    void begin(); // Setup the SPI port
+    DAC8814(PinName cs, PinName ldac); // Constructor
+    void begin(); // Setup the SPI_1 port
     void setOutput(uint16_t val, byte ch); // Set the output of a single DAC channel
     
   private:
     
-    byte _cs;
-    byte _ldac;
+    PinName _cs;
+    PinName _ldac;
   
 };
 
